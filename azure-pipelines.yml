@@ -6,7 +6,7 @@
 trigger:
 - main
 
-pool: WinPool
+pool: WindowsPool
 
 steps:
 - script: echo Hello, world!
