@@ -18,12 +18,12 @@ steps:
       
       Write-Host "Hello World from Powershell"
 
-- stage: install Terraform
+- stage:
 - task: TerraformInstaller@0
   inputs:
     terraformVersion: 'latest'
 
-- stage: init Terraform
+- stage:
 - task: TerraformTaskV2@2
   inputs:
     provider: 'aws'
@@ -31,13 +31,13 @@ steps:
     backendServiceAWS: 'AWSforTerraform'
     backendAWSBucketName: 'avdlpbucket'
     backendAWSKey: 'state/terraform.tfstate'
-- stage: plan Terraform
+- stage:
 - task: TerraformTaskV2@2
   inputs:
     provider: 'aws'
     command: 'plan'
     environmentServiceNameAWS: 'AWSforTerraform'
-- stage: apply Terraform
+- stage:
 - task: TerraformTaskV2@2
   inputs:
     provider: 'aws'
