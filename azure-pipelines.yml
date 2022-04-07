@@ -17,7 +17,29 @@ steps:
       # Write your PowerShell commands here.
       
       Write-Host "Hello World from Powershell"
+Stages:
+- stage: install Terraform
 - task: TerraformInstaller@0
   inputs:
     terraformVersion: 'latest'
-    
+
+- stage: init Terraform
+- task: TerraformTaskV2@2
+  inputs:
+    provider: 'aws'
+    command: 'init'
+    backendServiceAWS: 'AWSforTerraform'
+    backendAWSBucketName: 'avdlpbucket'
+    backendAWSKey: 'state/terraform.tfstate'
+- stage: plan Terraform
+- task: TerraformTaskV2@2
+  inputs:
+    provider: 'aws'
+    command: 'plan'
+    environmentServiceNameAWS: 'AWSforTerraform'
+- stage: apply Terraform
+- task: TerraformTaskV2@2
+  inputs:
+    provider: 'aws'
+    command: 'apply'
+    environmentServiceNameAWS: 'AWSforTerraform'
