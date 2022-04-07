@@ -8,6 +8,8 @@ trigger:
 
 pool: WindowsPool
 
+steps:
+
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
